@@ -41,13 +41,15 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/toast'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'http://165.22.199.57/',
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module

@@ -3,9 +3,9 @@
     <v-app-bar app>
 
       <v-spacer/>
-      <div v-if="$auth.loggedIn">
-        {{$auth.user.email}}
-        <v-btn text>Logout</v-btn>
+      <div v-if="user.email">
+        {{user.email}}
+        <v-btn text @click="logout">Logout</v-btn>
       </div>
 
       <div v-else>
@@ -14,10 +14,26 @@
       </div>
 
     </v-app-bar>
-    <h1>Title</h1>
+
+    <v-content>
+      <nuxt/>
+    </v-content>
+
   </v-app>
 </template>
 
 <script>
-  export default {};
+  import { mapGetters } from 'vuex';
+
+  export default {
+    computed: {
+      ...mapGetters(['user'])
+    },
+    methods: {
+      logout() {
+        this.$store.dispatch('logout');
+        this.$router.push('/login');
+      }
+    }
+  };
 </script>
