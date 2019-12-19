@@ -19,7 +19,7 @@
     methods: {
       async loginUser(loginInfo) {
         await this.$store.dispatch('login', loginInfo);
-        this.$router.push('/');
+        this.$router.push('/profile');
       }
     }
   };

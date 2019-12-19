@@ -29,3 +29,5 @@ const store = () => new Vuex.Store({
 
 export default store;
 
+//TODO: add error handling
+

@@ -67,15 +67,16 @@
         showPassword: false,
         userInfo: {
           "sponsor": "testareg1",
-          "username": "pashasdf",
-          "email": "pasha@mail2.ru",
-          "firstName": "Pasha",
+          "username": "Andrey",
+          "email": "andrey@mail.ru",
+          "firstName": "Andrey",
           "secondName": "Doe",
           "password": "123456789",
           "finPassword": "987654321",
-          "country": "RU",
+          "country": "ru",
           "phone": "9264569823"
         },
+        //TODO: add all validations
         nameRules: [
           v => !!v || 'Name is required',
           v => (v && v.length <= 10) || 'Name must be less than 10 characters'

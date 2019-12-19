@@ -18,7 +18,7 @@
     methods: {
       async registerUser(registrationInfo) {
         await this.$store.dispatch('register', registrationInfo);
-        this.$router.push('/');
+        this.$router.push('/profile');
       }
     }
   };
