@@ -1,30 +1,38 @@
 <template>
   <v-container>
-    <h1>Profile {{user.username}}</h1>
-    <v-form @submit.prevent="updateUser(userInfo)">
+    <h1>Profile {{userInfo.username}}</h1>
+    <v-form @submit.prevent="updateUser({
+    username:userInfo.username,
+    email: userInfo.email
+    })">
       <v-text-field v-model="userInfo.username"
                     label="User name"/>
+      <v-text-field v-model="userInfo.email"
+                    label="Email"/>
 
       <v-btn type="submit"
       >Submit
       </v-btn>
 
       <v-btn @click="test">Test</v-btn>
+      <v-btn @click="$router.push('profile/edit')">Edit</v-btn>
 
     </v-form>
 
-    <ul>
+    <ul v-if="!loading">
       <li v-for="field in Object.keys(userInfo)">
         {{field}}: {{userInfo[field]}}
       </li>
     </ul>
+
+    <div v-else>Loading</div>
 
 
   </v-container>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+  import { mapActions } from 'vuex';
 
   export default {
     data() {
@@ -54,9 +62,6 @@
         loading: true
       };
     },
-    computed: {
-      ...mapGetters(['user'])
-    },
     methods: {
       ...mapActions(['updateUser']),
       test() {
@@ -65,6 +70,7 @@
     },
     async mounted() {
       this.userInfo = await this.$store.dispatch('fetchUser');
+      this.loading = false;
     }
   };
 </script>

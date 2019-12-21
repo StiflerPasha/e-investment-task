@@ -19,20 +19,26 @@ export default {
     async updateUser({ dispatch, commit, getters }, toUpdate) {
       try {
         let token = getters.token;
-        await this.$axios.put('user', { toUpdate, token });
+        await this.$axios.put('user', { ...toUpdate, token }, {
+          headers: { 'content-type': 'application/json' }
+        });
+
         dispatch('fetchUser');
+
       } catch (e) {
         commit('setError', e);
         throw e;
       }
     },
+
     async fetchUser({ dispatch, commit, getters }) {
       try {
         let token = getters.token;
         let { data } = await this.$axios.get(`user/?token=${token}`);
+
         commit('setUser', data);
-        console.log(data);
         return data;
+
       } catch (e) {
         commit('setError', e);
         throw e;

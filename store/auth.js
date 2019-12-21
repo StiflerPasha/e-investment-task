@@ -2,10 +2,12 @@ export default {
   actions: {
     async register({ dispatch, commit }, user) {
       try {
-        let { data } = await this.$axios.post('user', { ...user });
+        let { data } = await this.$axios.post('user', { ...user },
+          {
+            headers: { 'content-type': 'application/json' }
+          });
         commit('setToken', data.token);
         dispatch('fetchUser');
-        console.log(data.token);
       } catch (e) {
         commit('setError', e);
         throw e;
@@ -17,7 +19,6 @@ export default {
         let { data } = await this.$axios.get(`auth/?username=${username}&password=${password}`);
         commit('setToken', data.token);
         dispatch('fetchUser');
-        console.log(data.token);
       } catch (e) {
         commit('setError', e);
         throw e;
