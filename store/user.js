@@ -16,10 +16,10 @@ export default {
     }
   },
   actions: {
-    async updateUser({ dispatch, commit, getters }, { birthday }) {
+    async updateUser({ dispatch, commit, getters }, toUpdate) {
       try {
         let token = getters.token;
-        await this.$axios.put('user', { birthday, token }, {
+        await this.$axios.put('user', { ...toUpdate, token }, {
           headers: { 'content-type': 'application/json' }
         });
 
@@ -37,7 +37,6 @@ export default {
         let { data } = await this.$axios.get(`user/?token=${token}`);
 
         commit('setUser', data);
-        return data;
 
       } catch (e) {
         commit('setError', e);

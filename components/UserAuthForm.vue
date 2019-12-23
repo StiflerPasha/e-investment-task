@@ -1,61 +1,67 @@
 <template>
-  <v-form v-model="valid">
-    <v-text-field v-model="userInfo.sponsor"
-                  label="Sponsor"
-                  :rules="nameRules"
-                  v-if="register"/>
+  <v-card class="mx-auto" max-width="450">
+    <v-card-title class="red--text">{{buttonText}}</v-card-title>
+    <v-card-text>
+      <v-form v-model="valid">
+        <v-text-field v-model="userInfo.sponsor"
+                      label="Sponsor"
+                      :rules="nameRules"
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.username"
-                  label="Username"
-                  :rules="nameRules"/>
+        <v-text-field v-model="userInfo.username"
+                      label="Username"
+                      :rules="nameRules"/>
 
-    <v-text-field v-model="userInfo.email"
-                  label="Email"
-                  :rules="emailRules"
-                  v-if="register"/>
+        <v-text-field v-model="userInfo.email"
+                      label="Email"
+                      :rules="emailRules"
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.firstName"
-                  label="First Name"
-                  :rules="nameRules"
-                  v-if="register"/>
+        <v-text-field v-model="userInfo.firstName"
+                      label="First Name"
+                      :rules="nameRules"
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.secondName"
-                  label="Second Name"
-                  :rules="nameRules"
-                  v-if="register"/>
+        <v-text-field v-model="userInfo.secondName"
+                      label="Second Name"
+                      :rules="nameRules"
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.phone"
-                  label="Phone"
+        <v-text-field v-model="userInfo.phone"
+                      label="Phone"
 
-                  v-if="register"/>
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.country"
-                  label="Country"
+        <v-text-field v-model="userInfo.country"
+                      label="Country"
 
-                  v-if="register"/>
+                      v-if="register"/>
 
-    <v-text-field v-model="userInfo.password"
-                  label="Password"
-                  :type="showPassword ? 'text' : 'password'"
-                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="showPassword = !showPassword"
-                  counter=true
-                  :rules="passwordRules"/>
+        <v-text-field v-model="userInfo.password"
+                      label="Password"
+                      :type="showPassword ? 'text' : 'password'"
+                      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                      @click:append="showPassword = !showPassword"
+                      counter=true
+                      :rules="passwordRules"/>
 
-    <v-text-field v-model="userInfo.finPassword"
-                  label="Finance Password"
-                  :type="showPassword ? 'text' : 'password'"
-                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="showPassword = !showPassword"
-                  counter=true
-                  :rules="passwordRules"
-                  v-if="register"/>
+        <v-text-field v-model="userInfo.finPassword"
+                      label="Finance Password"
+                      :type="showPassword ? 'text' : 'password'"
+                      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                      @click:append="showPassword = !showPassword"
+                      counter=true
+                      :rules="passwordRules"
+                      v-if="register"/>
 
-    <v-btn @click="submitForm(userInfo)"
-           :disabled="!valid"
-    >{{buttonText}}
-    </v-btn>
-  </v-form>
+        <v-btn @click="submitForm(userInfo)"
+               :disabled="!valid"
+        >{{buttonText}}
+        </v-btn>
+      </v-form>
+    </v-card-text>
+  </v-card>
+
 </template>
 
 <script>
@@ -65,7 +71,9 @@
       return {
         valid: false,
         showPassword: false,
-        userInfo: {
+        userInfo: {},
+        //Uncomment to quick Test
+        /*userInfo: {
           "sponsor": "testareg1",
           "username": "pasha",
           "email": "andrey@mail.ru",
@@ -75,7 +83,7 @@
           "finPassword": "987654321",
           "country": "ru",
           "phone": "9264569823"
-        },
+        },*/
         //TODO: add all validations
         nameRules: [
           v => !!v || 'Name is required',
