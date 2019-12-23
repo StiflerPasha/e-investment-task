@@ -16,10 +16,10 @@ export default {
     }
   },
   actions: {
-    async updateUser({ dispatch, commit, getters }, toUpdate) {
+    async updateUser({ dispatch, commit, getters }, { birthday }) {
       try {
         let token = getters.token;
-        await this.$axios.put('user', { ...toUpdate, token }, {
+        await this.$axios.put('user', { birthday, token }, {
           headers: { 'content-type': 'application/json' }
         });
 

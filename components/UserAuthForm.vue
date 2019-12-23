@@ -67,7 +67,7 @@
         showPassword: false,
         userInfo: {
           "sponsor": "testareg1",
-          "username": "Andrey",
+          "username": "pasha",
           "email": "andrey@mail.ru",
           "firstName": "Andrey",
           "secondName": "Doe",

@@ -5,7 +5,7 @@
       <v-spacer/>
       <div v-if="user.email">
         {{user.email}}
-        <v-btn text @click="logout">Logout</v-btn>
+        <v-btn text @click="out">Logout</v-btn>
       </div>
 
       <div v-else>
@@ -23,15 +23,17 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
 
   export default {
     computed: {
       ...mapGetters(['user'])
     },
     methods: {
-      logout() {
-        this.$store.dispatch('logout');
+      ...mapActions(['logout']),
+
+      out() {
+        this.logout();
         this.$router.push('/login');
       }
     }
